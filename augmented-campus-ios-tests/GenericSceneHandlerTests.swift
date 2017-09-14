@@ -8,25 +8,21 @@
 
 import Foundation
 import XCTest
+import AugmentedCampusIosCore
 
 class GenericSceneHandlerTests: XCTestCase {
 	func testNoARMode() {
-		let handler = SceneHandler.sceneHandlerFactory[.NoARMode]!()
-		XCTAssertNotNil(handler.scene)
-	}
-	
-	func testARMode() {
-		let handler = SceneHandler.sceneHandlerFactory[.ARMode]!()
-		XCTAssertNil(handler.scene)
+		let handler = SceneBasedSceneHandler.sceneHandlerFactory[.NoARMode]!()
+		XCTAssertNotNil((handler as! SceneBasedSceneHandler).scene)
 	}
 	
 	func testSceneFileName() {
-		XCTAssertEqual(SceneHandler.getSceneFileName(sceneType: .NoARMode), "NoARMode.scn")
-		XCTAssertEqual(SceneHandler.getSceneFileName(sceneType: .ARMode), "ARMode.scn")
+		XCTAssertEqual(SceneBasedSceneHandler.getSceneFileName(sceneType: .NoARMode), "NoARMode.scn")
+		XCTAssertEqual(SceneBasedSceneHandler.getSceneFileName(sceneType: .ARMode), "ARMode.scn")
 	}
 	
 	func testScenesDir() {
-		XCTAssertEqual(SceneHandler.scenesDir, "scn.scnassets/scenes")
+		XCTAssertEqual(SceneBasedSceneHandler.scenesDir, "scn.scnassets/scenes")
 	}
 	
 	func testToggleState() {

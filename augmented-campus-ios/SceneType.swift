@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum SceneType: String {
+public enum SceneType: String {
 	case NoARMode, ARMode
 }

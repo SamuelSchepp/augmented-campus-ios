@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment version="4352" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,9 +22,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Owm-rN-pjK" userLabel="Scene Kit View">
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rNY-Jf-jqb">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.21763681994818651" green="0.21763681994818651" blue="0.21763681994818651" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </arscnView>
+                            <sceneKitView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Twg-Vw-M1f" userLabel="Scene View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </sceneKitView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U16-SJ-Z9K">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
@@ -34,7 +37,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ek-vj-sfN" userLabel="Content View">
                                             <rect key="frame" x="0.0" y="20" width="375" height="47"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PhS-9E-YtH">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PhS-9E-YtH">
                                                     <rect key="frame" x="318" y="8" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="sceneToggleToggled:" destination="BV1-FR-VrT" eventType="valueChanged" id="LQb-aj-1aR"/>
@@ -49,6 +52,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PhS-9E-YtH" firstAttribute="leading" secondItem="fAg-YF-fJw" secondAttribute="trailing" constant="8" id="0ye-yB-v3W"/>
+                                                <constraint firstItem="fAg-YF-fJw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7Ek-vj-sfN" secondAttribute="leading" constant="20" symbolic="YES" id="QH6-Qx-tu9"/>
                                                 <constraint firstItem="PhS-9E-YtH" firstAttribute="top" secondItem="7Ek-vj-sfN" secondAttribute="top" constant="8" id="Sad-87-wwV"/>
                                                 <constraint firstAttribute="trailing" secondItem="PhS-9E-YtH" secondAttribute="trailing" constant="8" id="Wdo-mg-S2e"/>
                                                 <constraint firstItem="fAg-YF-fJw" firstAttribute="centerY" secondItem="PhS-9E-YtH" secondAttribute="centerY" id="fPK-TU-1Lc"/>
@@ -70,18 +74,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Owm-rN-pjK" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leading" id="1mR-Lt-ibh"/>
-                            <constraint firstItem="U16-SJ-Z9K" firstAttribute="top" secondItem="Owm-rN-pjK" secondAttribute="top" id="3j9-0m-BgF"/>
+                            <constraint firstItem="Jb7-wD-vNf" firstAttribute="top" secondItem="rNY-Jf-jqb" secondAttribute="bottom" id="0GE-Mj-XBE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rNY-Jf-jqb" secondAttribute="trailing" constant="-16" id="2Nn-Z6-hgd"/>
                             <constraint firstItem="U16-SJ-Z9K" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leading" id="6xc-cV-Dno"/>
-                            <constraint firstItem="Owm-rN-pjK" firstAttribute="top" secondItem="zdz-JM-rse" secondAttribute="top" id="SaJ-fn-tbk"/>
+                            <constraint firstAttribute="trailing" secondItem="Twg-Vw-M1f" secondAttribute="trailing" id="ATE-9z-DbO"/>
+                            <constraint firstItem="Twg-Vw-M1f" firstAttribute="top" secondItem="zdz-JM-rse" secondAttribute="top" id="Emv-dh-SYo"/>
+                            <constraint firstItem="rNY-Jf-jqb" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leadingMargin" constant="-16" id="J5q-oO-fLG"/>
+                            <constraint firstItem="Twg-Vw-M1f" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leading" id="SQu-ac-8cU"/>
                             <constraint firstAttribute="trailing" secondItem="U16-SJ-Z9K" secondAttribute="trailing" id="WWq-Kl-QpA"/>
-                            <constraint firstItem="Jb7-wD-vNf" firstAttribute="top" secondItem="Owm-rN-pjK" secondAttribute="bottom" id="mSs-wl-yX6"/>
-                            <constraint firstAttribute="trailing" secondItem="Owm-rN-pjK" secondAttribute="trailing" id="zMG-HF-HE5"/>
+                            <constraint firstItem="rNY-Jf-jqb" firstAttribute="top" secondItem="zdz-JM-rse" secondAttribute="top" id="WsJ-L3-uFx"/>
+                            <constraint firstItem="U16-SJ-Z9K" firstAttribute="top" secondItem="rNY-Jf-jqb" secondAttribute="top" id="bCO-Ij-GZU"/>
+                            <constraint firstItem="Jb7-wD-vNf" firstAttribute="top" secondItem="Twg-Vw-M1f" secondAttribute="bottom" id="vns-AH-8NI"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="sceneView" destination="Owm-rN-pjK" id="VVN-Xc-49V"/>
+                        <outlet property="arSceneView" destination="rNY-Jf-jqb" id="pd5-HO-GYW"/>
+                        <outlet property="sceneView" destination="Twg-Vw-M1f" id="XaU-fh-fV2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

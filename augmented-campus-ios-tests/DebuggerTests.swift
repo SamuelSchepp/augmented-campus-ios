@@ -8,6 +8,7 @@
 
 import Foundation
 import XCTest
+import AugmentedCampusIosCore
 
 class DebuggerTests: XCTestCase {
 	func testLines() {

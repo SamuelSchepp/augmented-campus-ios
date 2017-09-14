@@ -8,6 +8,7 @@
 
 import Foundation
 import XCTest
+import AugmentedCampusIosCore
 
 class SceneTypeTests: XCTestCase {
 	func testRawValue() {

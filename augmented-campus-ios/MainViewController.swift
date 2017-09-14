@@ -9,23 +9,25 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import ARKit
+import AugmentedCampusIosCore
 
-class MainViewController: UIViewController {
+public class MainViewController: UIViewController, ARViewController {
 
 	// MARK: - Outlets
-	@IBOutlet weak var sceneView: SCNView!
+	@IBOutlet public weak var arSceneView: ARSCNView!
+	@IBOutlet public weak var sceneView: SCNView!
 	
 	// MARK: - UIViewController impl
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 		
-		load(sceneType: .NoARMode)
+		load(sceneType: .ARMode)
     }
 	
 	// MARK: - MainViewController impl
 	private func load(sceneType: SceneType) {
 		let sceneHandler = SceneHandler.sceneHandlerFactory[sceneType]!()
-		sceneView.scene = sceneHandler.scene
 		sceneHandler.configure(view: self)
 	}
 	
@@ -37,11 +39,11 @@ class MainViewController: UIViewController {
 
 // MARK: - MainViewController config
 extension MainViewController {
-	override var preferredStatusBarStyle: UIStatusBarStyle {
+	public override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
 	}
 	
-	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+	public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
 		return .all
 	}
 }

@@ -8,10 +8,10 @@
 
 import Foundation
 
-class Debugger {
+public class Debugger {
 	private static var _lines: [String] = [];
 	
-	class func log(message: String, from sender: Any) {
+	public class func log(message: String, from sender: Any) {
 		#if DEBUG
 			let compMessage = "[\(type(of: sender))] \(message)"
 			_lines.append(compMessage)
@@ -19,13 +19,13 @@ class Debugger {
 		#endif
 	}
 	
-	class var lines: String {
+	public class var lines: String {
 		get {
 			return _lines.joined(separator: "\n")
 		}
 	}
 	
-	class func reset() {
+	public class func reset() {
 		_lines = []
 	}
 }
