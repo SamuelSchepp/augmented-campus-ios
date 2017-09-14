@@ -6,14 +6,13 @@
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="MainViewController" customModule="augmented_campus_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="MainViewController" customModule="AugmentedCampusIos" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OUd-19-URz"/>
                         <viewControllerLayoutGuide type="bottom" id="Jb7-wD-vNf"/>
@@ -75,11 +74,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Jb7-wD-vNf" firstAttribute="top" secondItem="rNY-Jf-jqb" secondAttribute="bottom" id="0GE-Mj-XBE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rNY-Jf-jqb" secondAttribute="trailing" constant="-16" id="2Nn-Z6-hgd"/>
                             <constraint firstItem="U16-SJ-Z9K" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leading" id="6xc-cV-Dno"/>
                             <constraint firstAttribute="trailing" secondItem="Twg-Vw-M1f" secondAttribute="trailing" id="ATE-9z-DbO"/>
+                            <constraint firstItem="rNY-Jf-jqb" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leading" id="CGJ-yO-vXW"/>
                             <constraint firstItem="Twg-Vw-M1f" firstAttribute="top" secondItem="zdz-JM-rse" secondAttribute="top" id="Emv-dh-SYo"/>
-                            <constraint firstItem="rNY-Jf-jqb" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leadingMargin" constant="-16" id="J5q-oO-fLG"/>
+                            <constraint firstAttribute="trailing" secondItem="rNY-Jf-jqb" secondAttribute="trailing" id="LEQ-Pe-k6y"/>
                             <constraint firstItem="Twg-Vw-M1f" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leading" id="SQu-ac-8cU"/>
                             <constraint firstAttribute="trailing" secondItem="U16-SJ-Z9K" secondAttribute="trailing" id="WWq-Kl-QpA"/>
                             <constraint firstItem="rNY-Jf-jqb" firstAttribute="top" secondItem="zdz-JM-rse" secondAttribute="top" id="WsJ-L3-uFx"/>

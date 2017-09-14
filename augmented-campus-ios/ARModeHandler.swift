@@ -20,7 +20,6 @@ class ARModeSceneHandler: SceneHandler {
 		let arHandler = ARViewHandler()
 		let config = ARWorldTrackingConfiguration()
 		config.worldAlignment = ARConfiguration.WorldAlignment.gravityAndHeading
-		config.planeDetection = .horizontal
 		
 		view.arSceneView.delegate = arHandler
 		view.arSceneView.session.run(config)
