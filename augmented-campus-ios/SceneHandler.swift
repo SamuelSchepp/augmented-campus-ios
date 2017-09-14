@@ -9,10 +9,11 @@
 import Foundation
 import SceneKit
 
-public class SceneHandler {
+public class SceneHandler: NSObject {
 	public func configure(view: ARViewController) {
 		#if DEBUG
-		view.arSceneView.showsStatistics = true
+			view.arSceneView.showsStatistics = true
+			view.sceneView.showsStatistics = true
 		#endif
 	}
 	

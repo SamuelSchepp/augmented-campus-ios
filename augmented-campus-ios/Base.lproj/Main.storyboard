@@ -42,19 +42,20 @@
                                                         <action selector="sceneToggleToggled:" destination="BV1-FR-VrT" eventType="valueChanged" id="LQb-aj-1aR"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No-AR Mode" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAg-YF-fJw">
-                                                    <rect key="frame" x="211" y="13" width="99" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0G-Ts-5to">
+                                                    <rect key="frame" x="8" y="0.0" width="302" height="47"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="PhS-9E-YtH" firstAttribute="leading" secondItem="fAg-YF-fJw" secondAttribute="trailing" constant="8" id="0ye-yB-v3W"/>
-                                                <constraint firstItem="fAg-YF-fJw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7Ek-vj-sfN" secondAttribute="leading" constant="20" symbolic="YES" id="QH6-Qx-tu9"/>
                                                 <constraint firstItem="PhS-9E-YtH" firstAttribute="top" secondItem="7Ek-vj-sfN" secondAttribute="top" constant="8" id="Sad-87-wwV"/>
                                                 <constraint firstAttribute="trailing" secondItem="PhS-9E-YtH" secondAttribute="trailing" constant="8" id="Wdo-mg-S2e"/>
-                                                <constraint firstItem="fAg-YF-fJw" firstAttribute="centerY" secondItem="PhS-9E-YtH" secondAttribute="centerY" id="fPK-TU-1Lc"/>
+                                                <constraint firstItem="r0G-Ts-5to" firstAttribute="leading" secondItem="7Ek-vj-sfN" secondAttribute="leading" constant="8" id="YqI-Fp-cjt"/>
+                                                <constraint firstItem="r0G-Ts-5to" firstAttribute="top" secondItem="7Ek-vj-sfN" secondAttribute="top" id="feD-Wy-E7h"/>
+                                                <constraint firstItem="PhS-9E-YtH" firstAttribute="leading" secondItem="r0G-Ts-5to" secondAttribute="trailing" constant="8" id="o26-eh-K01"/>
+                                                <constraint firstAttribute="bottom" secondItem="r0G-Ts-5to" secondAttribute="bottom" id="xFE-h8-ZSc"/>
                                                 <constraint firstAttribute="bottom" secondItem="PhS-9E-YtH" secondAttribute="bottom" constant="8" id="zNX-v9-HPm"/>
                                             </constraints>
                                         </view>
@@ -90,6 +91,7 @@
                     <connections>
                         <outlet property="arSceneView" destination="rNY-Jf-jqb" id="pd5-HO-GYW"/>
                         <outlet property="sceneView" destination="Twg-Vw-M1f" id="XaU-fh-fV2"/>
+                        <outlet property="statusText" destination="r0G-Ts-5to" id="rBf-eh-dOT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

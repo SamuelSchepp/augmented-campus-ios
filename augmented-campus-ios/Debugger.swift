@@ -10,13 +10,21 @@ import Foundation
 
 public class Debugger {
 	private static var _lines: [String] = [];
+	public static var listener: DebuggerUIListener?
 	
 	public class func log(message: String, from sender: Any) {
+		let compMessage = "[\(type(of: sender))] \(message)"
+		
 		#if DEBUG
-			let compMessage = "[\(type(of: sender))] \(message)"
 			_lines.append(compMessage)
 			print(compMessage);
 		#endif
+		
+		if let listener = listener {
+			DispatchQueue.main.async {
+				listener.updateStatus(message: compMessage)
+			}
+		}
 	}
 	
 	public class var lines: String {
@@ -28,4 +36,8 @@ public class Debugger {
 	public class func reset() {
 		_lines = []
 	}
+}
+
+public protocol DebuggerUIListener {
+	func updateStatus(message: String)
 }

@@ -12,16 +12,19 @@ import SceneKit
 import ARKit
 import AugmentedCampusIosCore
 
-public class MainViewController: UIViewController, ARViewController {
+public class MainViewController: UIViewController, ARViewController, DebuggerUIListener {
 
 	// MARK: - Outlets
 	@IBOutlet public weak var arSceneView: ARSCNView!
 	@IBOutlet public weak var sceneView: SCNView!
+	@IBOutlet weak var statusText: UILabel!
+	
+	private var currentSceneHandler: SceneHandler!
 	
 	// MARK: - UIViewController impl
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-		
+	public override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		Debugger.listener = self
 		load(sceneType: .ARMode)
     }
 	
@@ -29,6 +32,7 @@ public class MainViewController: UIViewController, ARViewController {
 	private func load(sceneType: SceneType) {
 		let sceneHandler = SceneHandler.sceneHandlerFactory[sceneType]!()
 		sceneHandler.configure(view: self)
+		currentSceneHandler = sceneHandler
 	}
 	
 	@IBAction func sceneToggleToggled(_ sender: UISwitch) {
@@ -45,5 +49,11 @@ extension MainViewController {
 	
 	public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
 		return .all
+	}
+}
+
+extension MainViewController {
+	public func updateStatus(message: String) {
+		statusText.text = message
 	}
 }

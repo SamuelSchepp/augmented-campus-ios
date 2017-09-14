@@ -36,7 +36,7 @@ public class SceneBasedSceneHandler: SceneHandler {
 	}
 	
 	public override func configure(view: ARViewController) {
-		super.configure(view: view)
 		view.sceneView.scene = scene
+		super.configure(view: view)
 	}
 }
