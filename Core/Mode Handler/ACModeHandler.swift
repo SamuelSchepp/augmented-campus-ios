@@ -16,7 +16,5 @@ public class ACModeHandler: NSObject {
 		self.delegate = delegate
 		
 		super.init()
-		
-		delegate.sceneViewForHandler(handler: self).showsStatistics = true
 	}
 }

@@ -14,6 +14,7 @@ public class ACARModeHandler: ACModeHandler {
 	private var midPointCache: CGPoint?
 	private let delegate: ACARModeViewDelegate
 	private var campusList: [ARAnchor: SCNNode] = [:]
+	private var featureNodes: [SCNNode] = []
 	
 	private let configuration: ARWorldTrackingConfiguration	= { 
 		let config = ARWorldTrackingConfiguration() 
@@ -36,6 +37,7 @@ public class ACARModeHandler: ACModeHandler {
 		
 		arSceneView.session.run(self.configuration, options: self.options)
 		arSceneView.delegate = self
+		arSceneView.showsStatistics = true
 		
 		ACDebugger.listener = self
 		
@@ -99,7 +101,8 @@ extension ACARModeHandler {
 	}
 	
 	private func updateCampusForAnchor(anchor: ARPlaneAnchor, andNode node: SCNNode) {
-		self.campusList[anchor]?.position = node.convertPosition(SCNVector3(0, 0, 0), to: arSceneView.scene.rootNode)
+		SCNTransaction.animationDuration = 1.0
+		self.campusList[anchor]?.position = node.position
 	}
 	
 	private func removeCampusForAnchor(anchor: ARPlaneAnchor) {
@@ -109,7 +112,26 @@ extension ACARModeHandler {
 
 extension ACARModeHandler: ARSCNViewDelegate {
 	public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+		guard let points = arSceneView.session.currentFrame?.rawFeaturePoints?.points else { return }
+		for i in 0..<points.count {
+			if i < featureNodes.count {
+				featureNodes[i].position = SCNVector3.init(points[i].x, points[i].y, points[i].z)
+			}
+			else {
+				let node = SCNNode(geometry: SCNSphere(radius: 0.001))
+				node.geometry?.firstMaterial?.diffuse.contents = SKColor.magenta
+				node.name = "feature"
+				node.castsShadow = false
+				node.position = SCNVector3.init(points[i].x, points[i].y, points[i].z)
+				featureNodes.append(node)
+				arSceneView.scene.rootNode.addChildNode(node)
+			}
+		}
 		
+		for i in points.count..<featureNodes.count {
+			featureNodes.last!.removeFromParentNode()
+			featureNodes.removeLast()
+		}
 	}
 	
 	public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -117,10 +139,11 @@ extension ACARModeHandler: ARSCNViewDelegate {
 		
 		guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
 		let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
+		plane.cornerRadius = 0.01
 		let planeNode = SCNNode(geometry: plane)
-		planeNode.simdPosition = float3(planeAnchor.center.x, 0, planeAnchor.center.z)
 		planeNode.eulerAngles.x = -.pi / 2
-		planeNode.opacity = 0.05
+		planeNode.opacity = 0.2
+		
 		node.addChildNode(planeNode)
 		
 		addCampusForAnchor(anchor: planeAnchor)
@@ -130,7 +153,6 @@ extension ACARModeHandler: ARSCNViewDelegate {
 		guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
 		
 		if let planeNode = node.childNodes.first, let plane = planeNode.geometry as? SCNPlane { 
-			planeNode.simdPosition = float3(planeAnchor.center.x, 0, planeAnchor.center.z)
 			plane.width = CGFloat(planeAnchor.extent.x)
 			plane.height = CGFloat(planeAnchor.extent.z)
 		}
@@ -142,6 +164,7 @@ extension ACARModeHandler: ARSCNViewDelegate {
 		ACDebugger.log(message: "Renderer did remove node", from: self)
 		
 		guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+		node.childNodes.forEach({ child in child.removeFromParentNode() })
 		removeCampusForAnchor(anchor: planeAnchor)
 	}
 	
