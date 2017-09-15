@@ -1,6 +1,4 @@
 osx_image: "xcode9"
-language: "swift"
-xcode_project: "augmented-campus-ios.xcodeproj"
-xcode_scheme: "AugmentedCampusIosTests"
+script: ./test.sh
 notifications:
   email: false

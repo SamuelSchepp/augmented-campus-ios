@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="4352" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="MainViewController" customModule="AugmentedCampusIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OUd-19-URz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jb7-wD-vNf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zdz-JM-rse" userLabel="AC AR View">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rNY-Jf-jqb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </arscnView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U16-SJ-Z9K">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gPh-Zg-QIE">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0G-Ts-5to">
+                                            <rect key="frame" x="16" y="0.0" width="351" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="r0G-Ts-5to" firstAttribute="leading" secondItem="gPh-Zg-QIE" secondAttribute="leading" constant="16" id="JZE-ER-kyZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="r0G-Ts-5to" secondAttribute="bottom" id="XX6-vw-RNi"/>
+                                        <constraint firstItem="r0G-Ts-5to" firstAttribute="top" secondItem="gPh-Zg-QIE" secondAttribute="top" id="amd-cj-d4t"/>
+                                        <constraint firstAttribute="trailing" secondItem="r0G-Ts-5to" secondAttribute="trailing" constant="8" id="lWK-5h-Jwp"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Hz1-UQ-StO"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jb7-wD-vNf" firstAttribute="top" secondItem="rNY-Jf-jqb" secondAttribute="bottom" id="0GE-Mj-XBE"/>
+                            <constraint firstItem="U16-SJ-Z9K" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leading" id="6xc-cV-Dno"/>
+                            <constraint firstItem="rNY-Jf-jqb" firstAttribute="leading" secondItem="zdz-JM-rse" secondAttribute="leading" id="CGJ-yO-vXW"/>
+                            <constraint firstItem="Jb7-wD-vNf" firstAttribute="top" secondItem="U16-SJ-Z9K" secondAttribute="bottom" id="Gih-xJ-Rcc"/>
+                            <constraint firstAttribute="trailing" secondItem="rNY-Jf-jqb" secondAttribute="trailing" id="LEQ-Pe-k6y"/>
+                            <constraint firstAttribute="trailing" secondItem="U16-SJ-Z9K" secondAttribute="trailing" id="WWq-Kl-QpA"/>
+                            <constraint firstItem="rNY-Jf-jqb" firstAttribute="top" secondItem="zdz-JM-rse" secondAttribute="top" id="WsJ-L3-uFx"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="arModeARScene" destination="rNY-Jf-jqb" id="54H-Wh-cqm"/>
+                        <outlet property="arModeStatusLabel" destination="r0G-Ts-5to" id="5YF-aM-kWQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="123.68815592203899"/>
+        </scene>
+    </scenes>
+</document>
