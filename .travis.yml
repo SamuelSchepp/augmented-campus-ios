@@ -1,9 +1,6 @@
 os: osx
 language: swift
 osx_image: xcode9
-xcode_project: AugmentedCampusIos.xcodeproj
-xcode_scheme: AugmentedCampusIosTests
-xcode_sdk: iphonesimulator11.0
-notifications:
-  email: false
+
+script: test.sh
 
