@@ -78,5 +78,13 @@ extension MainViewController: ACARModeViewDelegate {
 	public func update(status: String, sender: ACARModeHandler) {
 		arModeStatusLabel.text = status
 	}
+	
+	public func updateStatusOK(ok: Bool, sender: ACARModeHandler) {
+		#if DEBUG
+			return
+		#else
+			debugView.isHidden = ok
+		#endif
+	}
 }
 

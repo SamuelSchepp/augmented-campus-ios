@@ -12,4 +12,5 @@ import SceneKit
 
 public protocol ACARModeViewDelegate: ACModeViewDelegate {
 	func update(status: String, sender: ACARModeHandler)
+	func updateStatusOK(ok: Bool, sender: ACARModeHandler)
 }

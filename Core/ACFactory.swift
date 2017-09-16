@@ -51,9 +51,7 @@ public class ACFactory: NSObject {
 		
 		if invisibleFloor {
 			if let floor = campusNode.childNode(withName: "floor", recursively: true) {
-				floor.geometry?.firstMaterial?.diffuse.contents = UIColor.white
-				floor.geometry?.firstMaterial?.colorBufferWriteMask = SCNColorMask(rawValue: 0)
-				floor.geometry?.firstMaterial?.writesToDepthBuffer = false
+				floor.opacity = 0.00001
 			}
 		}
 		
@@ -72,15 +70,60 @@ public class ACFactory: NSObject {
 	}
 	
 	public func targetPlane() -> SCNNode {
-		let plane 				= SCNPlane(width: CGFloat(1000.0 * campus0Scale.x), height: CGFloat(666.666 * campus0Scale.y))
-		let planeNode 			= SCNNode(geometry: plane)
-		plane.cornerRadius 		= 0.001
-		plane.firstMaterial?.diffuse.contents = SKColor.white
-		planeNode.castsShadow 	= false
-		planeNode.name			= "target plane"
-		planeNode.opacity 		= 0.5
-		planeNode.isHidden 		= true
+		/*      
+				n0
+		        --
+			n3 |  | n1
+			    --
+			    n2
+		*/
 		
-		return planeNode
+		let container 		= SCNNode()
+		let lineSpacing		= CGFloat(0.1)
+		let lineThicknes 	= CGFloat(0.01)
+		let width 			= CGFloat(1000.0 * campus0Scale.x)
+		let height 			= CGFloat(666.666 * campus0Scale.y)
+		let opacity			= CGFloat(0.5)
+		
+		var nodes = [SCNNode]()
+		for _ in 0...3 {
+			let plane = SCNPlane()
+			plane.cornerRadius = 0.003
+			plane.firstMaterial?.diffuse.contents = SKColor.green
+			
+			let node = SCNNode(geometry: plane)
+			node.castsShadow 	= false
+			node.name			= "target"
+			node.opacity		= opacity
+			
+			nodes.append(node)
+			container.addChildNode(node)
+		}
+		
+		(nodes[0].geometry as! SCNPlane).width = width - lineSpacing
+		(nodes[1].geometry as! SCNPlane).width = lineThicknes
+		(nodes[2].geometry as! SCNPlane).width = width - lineSpacing
+		(nodes[3].geometry as! SCNPlane).width = lineThicknes
+		
+		(nodes[0].geometry as! SCNPlane).height = lineThicknes
+		(nodes[1].geometry as! SCNPlane).height = height - lineSpacing
+		(nodes[2].geometry as! SCNPlane).height = lineThicknes
+		(nodes[3].geometry as! SCNPlane).height = height - lineSpacing
+		
+		nodes[0].position = SCNVector3(0, height / 2, 0)
+		nodes[1].position = SCNVector3(width / 2, 0, 0)
+		nodes[2].position = SCNVector3(0, -height / 2, 0)
+		nodes[3].position = SCNVector3(-width / 2, 0, 0)
+		
+		let circleGeometry = SCNPlane(width: lineThicknes * 2, height: lineThicknes * 2)
+		circleGeometry.cornerRadius = lineThicknes
+		circleGeometry.firstMaterial?.diffuse.contents = SKColor.green
+		let circle = SCNNode(geometry: circleGeometry)
+		circle.opacity 		= opacity
+		circle.castsShadow 	= false
+		
+		container.addChildNode(circle)
+		
+		return container
 	}
 }

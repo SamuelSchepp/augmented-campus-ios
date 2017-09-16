@@ -15,9 +15,12 @@ public class ACARModeHandler: ACModeHandler {
 	private let delegate: 		ACARModeViewDelegate
 	private var campusList: 	[ARAnchor: SCNNode] = [:]
 	private var airCampusList: 	[SCNNode] 			= []
-	private var featureNodes: 	[SCNNode] 			= []
 	private var targetPlane:	SCNNode				= ACFactory.shared.targetPlane()
 	private var currentTargetPlaneAnchor: ARPlaneAnchor?
+	
+	#if DEBUG
+	private var featureNodes: 	[SCNNode] 			= []
+	#endif
 	
 	private let configuration: ARWorldTrackingConfiguration	= { 
 		let config = ARWorldTrackingConfiguration() 
@@ -65,14 +68,18 @@ public class ACARModeHandler: ACModeHandler {
 		var campus: SCNNode = SCNNode()
 		
 		if let anchor = currentTargetPlaneAnchor {
+			// Place campus on plane
+			
 			if let currentCampus = campusList[anchor] {
 				currentCampus.removeFromParentNode()
 			}
-			campus = ACFactory.shared.campus0(invisibleFloor: false)
+			campus = ACFactory.shared.campus0(invisibleFloor: true)
 			campus.simdWorldTransform = targetPlane.simdWorldTransform
 			campusList[anchor] = campus
 		}
 		else {
+			// Place campus in air
+			
 			campus = ACFactory.shared.campus0(invisibleFloor: false)
 			
 			var translation = matrix_identity_float4x4
@@ -146,6 +153,7 @@ extension ACARModeHandler: ARSCNViewDelegate {
 		/*
 			Render feature points
 		*/
+		#if DEBUG
 		guard let points = arSceneView.session.currentFrame?.rawFeaturePoints?.points else { return }
 		for i in 0..<points.count {
 			if i < featureNodes.count {
@@ -162,6 +170,7 @@ extension ACARModeHandler: ARSCNViewDelegate {
 			featureNodes.last!.removeFromParentNode()
 			featureNodes.removeLast()
 		}
+		#endif
 		
 		/*
 			Hittest planes for rendering the target plane
@@ -235,17 +244,28 @@ extension ACARModeHandler: ARSCNViewDelegate {
 	
 	public func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
 		ACDebugger.log(message: "Camera did change tracking state: \(camera.trackingState)", from: self)
+		switch camera.trackingState {
+		case .normal:
+			delegate.updateStatusOK(ok: true, sender: self)
+			break
+		default:
+			delegate.updateStatusOK(ok: false, sender: self)
+			
+		}
 	}
 	
 	public func session(_ session: ARSession, didFailWithError error: Error) {
+		delegate.updateStatusOK(ok: false, sender: self)
 		ACDebugger.log(message: "Session did fail with error: \(error.localizedDescription)", from: self)
 	}
 	
 	public func sessionWasInterrupted(_ session: ARSession) {
+		delegate.updateStatusOK(ok: false, sender: self)
 		ACDebugger.log(message: "Session was interrupted", from: self)
 	}
 	
 	public func sessionInterruptionEnded(_ session: ARSession) {
+		delegate.updateStatusOK(ok: true, sender: self)
 		ACDebugger.log(message: "Session interruptions ended", from: self)
 	}
 }
