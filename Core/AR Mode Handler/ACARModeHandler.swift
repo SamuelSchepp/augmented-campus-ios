@@ -11,10 +11,11 @@ import SceneKit
 import ARKit
 
 public class ACARModeHandler: ACModeHandler {
-	private var midPointCache: CGPoint?
-	private let delegate: ACARModeViewDelegate
-	private var campusList: [ARAnchor: SCNNode] = [:]
-	private var featureNodes: [SCNNode] = []
+	private var midPointCache: 	CGPoint?
+	private let delegate: 		ACARModeViewDelegate
+	private var campusList: 	[ARAnchor: SCNNode] = [:]
+	private var featureNodes: 	[SCNNode] 			= []
+	private var campus0Scale: 	float3 				= float3(x: 0.0005, y: 0.0005, z: 0.0005)
 	
 	private let configuration: ARWorldTrackingConfiguration	= { 
 		let config = ARWorldTrackingConfiguration() 
@@ -38,6 +39,7 @@ public class ACARModeHandler: ACModeHandler {
 		arSceneView.session.run(self.configuration, options: self.options)
 		arSceneView.delegate = self
 		arSceneView.showsStatistics = true
+		arSceneView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
 		
 		ACDebugger.listener = self
 		
@@ -47,6 +49,21 @@ public class ACARModeHandler: ACModeHandler {
 		else {
 			ACDebugger.log(message: "Device not supported", from: self)
 		}
+	}
+	
+	@objc public func tap() {
+		ACDebugger.log(message: "Tapped", from: self)
+		guard let campus = ACSceneLoader.shared.load(sceneType: .campus0)?.rootNode else { return }
+		let camera = arSceneView.session.currentFrame!.camera
+		
+		var translation = matrix_identity_float4x4
+		translation.columns.3.z = -0.5
+		
+		campus.simdTransform = matrix_multiply(camera.transform, translation)
+		campus.rotation.w = 0
+		campus.simdScale = campus0Scale
+		
+		arSceneView.scene.rootNode.addChildNode(campus)
 	}
 	
 	private var arSceneView: ARSCNView {
@@ -87,7 +104,7 @@ extension ACARModeHandler {
 		
 		let campusNode = campusScene.rootNode
 		campusNode.name = ACSceneType.campus0.rawValue
-		campusNode.simdScale 	= float3(x: 0.0005, y: 0.0005, z: 0.0005)
+		campusNode.simdScale 	= campus0Scale
 		campusNode.simdPosition = float3(anchor.center.x, 0, anchor.center.z)
 		campusNode.simdRotation = float4(0, 0, 0, 0)
 		if let floor = campusNode.childNode(withName: "floor", recursively: true) {
