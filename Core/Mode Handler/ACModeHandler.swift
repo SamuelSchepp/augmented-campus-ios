@@ -17,4 +17,8 @@ public class ACModeHandler: NSObject {
 		
 		super.init()
 	}
+	
+	public func deviceRotated() {
+		ACDebugger.log(message: "Device rotated", from: self)
+	}
 }

@@ -27,18 +27,13 @@ public class ACSceneLoader {
 	public let scenesDir = "scn.scnassets/scenes"
 	
 	public func load(sceneType: ACSceneType) -> SCNScene? {
-		let sceneName = sceneType.rawValue
-		let bundle = Bundle(for: type(of: self))
-		guard let url = bundle.url(forResource: sceneName, withExtension: "scn", subdirectory: scenesDir) else {
-			return SCNScene?.none
-		}
+		let sceneName = "\(sceneType.rawValue).scn"
 		
-		do {
-			let scene = try SCNScene.init(url: url, options: nil)
+		if let scene = SCNScene(named: sceneName, inDirectory: scenesDir, options: nil) {
 			ACDebugger.log(message: "Scene loaded: \(sceneName)", from: self)
 			return scene
 		}
-		catch {
+		else {
 			ACDebugger.log(message: "Error loading \(sceneName)", from: self)
 			return SCNScene?.none
 		}

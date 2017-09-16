@@ -64,6 +64,7 @@
                     <connections>
                         <outlet property="arModeARScene" destination="rNY-Jf-jqb" id="54H-Wh-cqm"/>
                         <outlet property="arModeStatusLabel" destination="r0G-Ts-5to" id="5YF-aM-kWQ"/>
+                        <outlet property="debugView" destination="U16-SJ-Z9K" id="hD9-jl-82x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

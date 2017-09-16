@@ -16,8 +16,17 @@ public class MainViewController: UIViewController {
 	
 	@IBOutlet weak var arModeStatusLabel: UILabel!
 	@IBOutlet weak var arModeARScene: ARSCNView!
+	@IBOutlet weak var debugView: UIVisualEffectView!
 	
 	private var currentModeHandler: ACModeHandler?
+	
+	public override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		#if !DEBUG
+			debugView.isHidden = true
+		#endif
+	}
 	
 	// MARK: - UIViewController impl
 	public override func viewDidAppear(_ animated: Bool) {
@@ -36,12 +45,26 @@ public class MainViewController: UIViewController {
 
 // MARK: - MainViewController config
 extension MainViewController {
+	public override var prefersStatusBarHidden: Bool {
+		get {
+			#if DEBUG
+				return false
+			#else
+				return true
+			#endif
+		}
+	}
+	
 	public override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
 	}
 	
 	public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
 		return .all
+	}
+	
+	public override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+		currentModeHandler?.deviceRotated()
 	}
 }
 

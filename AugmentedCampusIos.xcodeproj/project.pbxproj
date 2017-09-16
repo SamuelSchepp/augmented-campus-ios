@@ -16,12 +16,14 @@
 		7E35E6091F6BDAF900F8E097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E35E5E51F6BDA4300F8E097 /* Assets.xcassets */; };
 		7E35E60C1F6BDDA300F8E097 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E35E5E81F6BDA4300F8E097 /* Main.storyboard */; };
 		7E35E60D1F6BDDA600F8E097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E35E5E61F6BDA4300F8E097 /* LaunchScreen.storyboard */; };
+		7E83C7AA1F6D3AB4007EFA9A /* ACFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83C7A91F6D3AB4007EFA9A /* ACFactory.swift */; };
+		7E83C7AB1F6D411D007EFA9A /* scn.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED48B4A1F6BDE5700ACF5A3 /* scn.scnassets */; };
+		7E83C7AD1F6D43AA007EFA9A /* FactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83C7AC1F6D43AA007EFA9A /* FactoryTests.swift */; };
 		7ED48B4B1F6BDE6000ACF5A3 /* ACARModeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED48B431F6BDE5700ACF5A3 /* ACARModeHandler.swift */; };
 		7ED48B4D1F6BDE6000ACF5A3 /* ACDebugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED48B451F6BDE5700ACF5A3 /* ACDebugger.swift */; };
 		7ED48B4E1F6BDE6000ACF5A3 /* ACNoARModeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED48B461F6BDE5700ACF5A3 /* ACNoARModeHandler.swift */; };
 		7ED48B501F6BDE6000ACF5A3 /* ACModeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED48B481F6BDE5700ACF5A3 /* ACModeHandler.swift */; };
 		7ED48B511F6BDE6000ACF5A3 /* ACSceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED48B491F6BDE5700ACF5A3 /* ACSceneType.swift */; };
-		7ED48B521F6BDE6300ACF5A3 /* scn.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED48B4A1F6BDE5700ACF5A3 /* scn.scnassets */; };
 		7ED48B541F6BE45100ACF5A3 /* ACSceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED48B531F6BE45100ACF5A3 /* ACSceneLoader.swift */; };
 		7ED48B561F6BE6C500ACF5A3 /* SceneLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED48B551F6BE6C500ACF5A3 /* SceneLoaderTests.swift */; };
 		7ED48B581F6BE9D000ACF5A3 /* ACMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED48B571F6BE9D000ACF5A3 /* ACMode.swift */; };
@@ -71,6 +73,8 @@
 		7E35E5F81F6BDA7100F8E097 /* DebuggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerTests.swift; sourceTree = "<group>"; };
 		7E35E5FA1F6BDA7100F8E097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E35E5FB1F6BDA7100F8E097 /* SceneTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTypeTests.swift; sourceTree = "<group>"; };
+		7E83C7A91F6D3AB4007EFA9A /* ACFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACFactory.swift; sourceTree = "<group>"; };
+		7E83C7AC1F6D43AA007EFA9A /* FactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryTests.swift; sourceTree = "<group>"; };
 		7E87EC3E1F6A84BD00EDA811 /* AugmentedCampusIosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AugmentedCampusIosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EC0BDB01F69894F006DFF92 /* AugmentedCampusIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AugmentedCampusIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED48B431F6BDE5700ACF5A3 /* ACARModeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACARModeHandler.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			children = (
 				7E35E5E21F6BDA4300F8E097 /* AppDelegate.swift */,
 				7E35E5E51F6BDA4300F8E097 /* Assets.xcassets */,
+				7ED48B4A1F6BDE5700ACF5A3 /* scn.scnassets */,
 				7E35E5E61F6BDA4300F8E097 /* LaunchScreen.storyboard */,
 				7E35E5E81F6BDA4300F8E097 /* Main.storyboard */,
 				7E35E5EB1F6BDA4300F8E097 /* Info.plist */,
@@ -132,6 +137,7 @@
 				7E35E5FA1F6BDA7100F8E097 /* Info.plist */,
 				7E35E5FB1F6BDA7100F8E097 /* SceneTypeTests.swift */,
 				7ED48B551F6BE6C500ACF5A3 /* SceneLoaderTests.swift */,
+				7E83C7AC1F6D43AA007EFA9A /* FactoryTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -165,7 +171,7 @@
 				7ED48B451F6BDE5700ACF5A3 /* ACDebugger.swift */,
 				7ED48B491F6BDE5700ACF5A3 /* ACSceneType.swift */,
 				7ED48B531F6BE45100ACF5A3 /* ACSceneLoader.swift */,
-				7ED48B4A1F6BDE5700ACF5A3 /* scn.scnassets */,
+				7E83C7A91F6D3AB4007EFA9A /* ACFactory.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -320,7 +326,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ED48B521F6BDE6300ACF5A3 /* scn.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +342,7 @@
 			files = (
 				7E35E60D1F6BDDA600F8E097 /* LaunchScreen.storyboard in Resources */,
 				7E35E6091F6BDAF900F8E097 /* Assets.xcassets in Resources */,
+				7E83C7AB1F6D411D007EFA9A /* scn.scnassets in Resources */,
 				7E35E60C1F6BDDA300F8E097 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +356,7 @@
 			files = (
 				7ED48B541F6BE45100ACF5A3 /* ACSceneLoader.swift in Sources */,
 				7ED48B4D1F6BDE6000ACF5A3 /* ACDebugger.swift in Sources */,
+				7E83C7AA1F6D3AB4007EFA9A /* ACFactory.swift in Sources */,
 				7ED48B4B1F6BDE6000ACF5A3 /* ACARModeHandler.swift in Sources */,
 				7ED48B581F6BE9D000ACF5A3 /* ACMode.swift in Sources */,
 				7ED48B511F6BDE6000ACF5A3 /* ACSceneType.swift in Sources */,
@@ -364,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E83C7AD1F6D43AA007EFA9A /* FactoryTests.swift in Sources */,
 				7ED48B561F6BE6C500ACF5A3 /* SceneLoaderTests.swift in Sources */,
 				7E35E6041F6BDAA100F8E097 /* DebuggerTests.swift in Sources */,
 				7E35E6061F6BDAA100F8E097 /* SceneTypeTests.swift in Sources */,
